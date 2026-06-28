@@ -7,6 +7,8 @@ public class ApplicationContext : DbContext
 {
     public DbSet<User> Users { get; set; }
     public DbSet<Category> Category { get; set; }
+    public DbSet<ToPay> ToPay { get; set; }
+    public DbSet<ToReceive> ToReceive { get; set; }
 
     public ApplicationContext(DbContextOptions<ApplicationContext>options) : base(options) { }
 
