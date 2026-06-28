@@ -1,0 +1,38 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PersonalFinancialManagement.Core.Models.Entities;
+
+namespace PersonalFinancialManagement.Infrastructure.Persistence.Configuration;
+
+public class ToPayConfiguration : IEntityTypeConfiguration<ToPay>
+{
+    public void Configure(EntityTypeBuilder<ToPay> builder)
+    {
+        builder.ToTable("ToPay")
+            .HasKey(_ => _.Id);
+
+        builder.Property(_ => _.UserId).HasColumnName("UserId").HasColumnType("UNIQUEIDENTIFIER").IsRequired();
+
+        builder.Property(_ => _.CategoryId).HasColumnName("CategoryId").HasColumnType("UNIQUEIDENTIFIER").IsRequired();
+
+        builder.Property(_ => _.Transaction).HasColumnName("TransactionId").HasColumnType("UNIQUEIDENTIFIER").IsRequired();
+
+        builder.OwnsOne(_ => _.Description, description =>
+        { description.Property(_ => _.Information).HasColumnName("Description").HasColumnType("VARCHAR").HasMaxLength(200).IsRequired(); });
+
+        builder.OwnsOne(_ => _.OriginalValue, originalValue =>
+        { originalValue.Property(_ => _.Value).HasColumnName("Original Value").HasColumnType("DECIMAL(00,00)").IsRequired(); });
+
+        builder.OwnsOne(_ => _.AmountPaid, amountPaid =>
+        { amountPaid.Property(_ => _.Value).HasColumnName("Amount Paid").HasColumnType("DECIMAL(00,00)").IsRequired(); });
+
+        builder.OwnsOne(_ => _.DueDate, dueDate =>
+        { dueDate.Property(_ => _.Date).HasColumnName("Due Date").HasColumnType("TIMESTAMP").IsRequired(); });
+
+        builder.OwnsOne(_ => _.ReferenceDate, referenceDate =>
+        { referenceDate.Property(_ => _.Date).HasColumnName("Reference Date").HasColumnType("TIMESTAMP").IsRequired(); });
+
+        builder.OwnsOne(_ => _.PaymentDate, paymentDate =>
+        { paymentDate.Property(_ => _.Date).HasColumnName("Payment Date").HasColumnType("TIMESTAMP").IsRequired(); });
+    }
+}
