@@ -6,6 +6,7 @@ namespace PersonalFinancialManagement.Infrastructure.Persistence.Context;
 public class ApplicationContext : DbContext
 {
     public DbSet<User> Users { get; set; }
+    public DbSet<Category> Category { get; set; }
 
     public ApplicationContext(DbContextOptions<ApplicationContext>options) : base(options) { }
 
