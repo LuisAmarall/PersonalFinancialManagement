@@ -6,4 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Models\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ProjectDesign">
+      <HintPath>..\..\ProjectDesign\bin\Debug\ProjectDesign.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
