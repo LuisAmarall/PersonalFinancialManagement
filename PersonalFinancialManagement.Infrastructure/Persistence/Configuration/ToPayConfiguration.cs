@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PersonalFinancialManagement.Core.Models.Entities;
+using PersonalFinancialManagement.Core.Entities;
 
 namespace PersonalFinancialManagement.Infrastructure.Persistence.Configuration;
 
@@ -34,5 +34,8 @@ public class ToPayConfiguration : IEntityTypeConfiguration<ToPay>
 
         builder.OwnsOne(_ => _.PaymentDate, paymentDate =>
         { paymentDate.Property(_ => _.Date).HasColumnName("Payment Date").HasColumnType("TIMESTAMP").IsRequired(); });
+
+        builder.OwnsOne(_ => _.CreatedAt, createdAt =>
+        { createdAt.Property(_ => _.Date).HasColumnName("Created At").HasColumnType("TIMESTAMP").IsRequired(); });
     }
 }

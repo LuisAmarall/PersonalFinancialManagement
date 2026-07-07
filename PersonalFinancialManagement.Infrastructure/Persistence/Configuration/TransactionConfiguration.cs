@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PersonalFinancialManagement.Core.Models.Entities;
+using PersonalFinancialManagement.Core.Entities;
 
 namespace PersonalFinancialManagement.Infrastructure.Persistence.Configuration;
 public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
@@ -21,6 +21,12 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
 
         builder.OwnsOne(_ => _.Modality, modality =>
         { modality.Property(_ => _.Modality).HasColumnName("Modality").HasColumnType("VARCHAR").HasMaxLength(50).IsRequired(); });
+
+        builder.OwnsOne(_ => _.Modality, modality =>
+        { modality.Property(_ => _.Details).HasColumnName("Details").HasColumnType("VARCHAR").HasMaxLength(50); });
+
+        builder.OwnsOne(_ => _.Modality, modality =>
+        { modality.Property(_ => _.Installments).HasColumnName("Installments").HasColumnType("VARCHAR").HasMaxLength(50); });
 
         builder.OwnsOne(_ => _.Description, description =>
         { description.Property(_ => _.Information).HasColumnName("Description").HasColumnType("VARCHAR").HasMaxLength(200).IsRequired(); });

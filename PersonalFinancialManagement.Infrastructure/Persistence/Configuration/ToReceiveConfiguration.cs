@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PersonalFinancialManagement.Core.Models.Entities;
+using PersonalFinancialManagement.Core.Entities;
 
 namespace PersonalFinancialManagement.Infrastructure.Persistence.Configuration;
 

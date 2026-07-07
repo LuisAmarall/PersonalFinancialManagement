@@ -1,6 +1,6 @@
 ﻿using DomainDesign.ValueObjects;
 
-namespace PersonalFinancialManagement.Core.Models.Entities;
+namespace PersonalFinancialManagement.Core.Entities;
 
 public class User
 {

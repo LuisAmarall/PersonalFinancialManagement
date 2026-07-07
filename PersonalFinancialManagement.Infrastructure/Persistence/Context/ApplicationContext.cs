@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PersonalFinancialManagement.Core.Models.Entities;
+using PersonalFinancialManagement.Core.Entities;
 
 namespace PersonalFinancialManagement.Infrastructure.Persistence.Context;
 
