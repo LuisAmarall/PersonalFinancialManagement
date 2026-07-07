@@ -21,21 +21,21 @@ public class ToPayConfiguration : IEntityTypeConfiguration<ToPay>
         { description.Property(_ => _.Information).HasColumnName("Description").HasColumnType("VARCHAR").HasMaxLength(200).IsRequired(); });
 
         builder.OwnsOne(_ => _.OriginalValue, originalValue =>
-        { originalValue.Property(_ => _.Value).HasColumnName("Original Value").HasColumnType("DECIMAL(00,00)").IsRequired(); });
+        { originalValue.Property(_ => _.Value).HasColumnName("Original Value").HasColumnType("DECIMAL(18, 2)").IsRequired(); });
 
         builder.OwnsOne(_ => _.AmountPaid, amountPaid =>
-        { amountPaid.Property(_ => _.Value).HasColumnName("Amount Paid").HasColumnType("DECIMAL(00,00)").IsRequired(); });
+        { amountPaid.Property(_ => _.Value).HasColumnName("Amount Paid").HasColumnType("DECIMAL(18, 2)").IsRequired(); });
 
         builder.OwnsOne(_ => _.DueDate, dueDate =>
-        { dueDate.Property(_ => _.Date).HasColumnName("Due Date").HasColumnType("TIMESTAMP").IsRequired(); });
+        { dueDate.Property(_ => _.Date).HasColumnName("Due Date").HasColumnType("datetime2").IsRequired(); });
 
         builder.OwnsOne(_ => _.ReferenceDate, referenceDate =>
-        { referenceDate.Property(_ => _.Date).HasColumnName("Reference Date").HasColumnType("TIMESTAMP").IsRequired(); });
+        { referenceDate.Property(_ => _.Date).HasColumnName("Reference Date").HasColumnType("datetime2").IsRequired(); });
 
         builder.OwnsOne(_ => _.PaymentDate, paymentDate =>
-        { paymentDate.Property(_ => _.Date).HasColumnName("Payment Date").HasColumnType("TIMESTAMP").IsRequired(); });
+        { paymentDate.Property(_ => _.Date).HasColumnName("Payment Date").HasColumnType("datetime2").IsRequired(); });
 
         builder.OwnsOne(_ => _.CreatedAt, createdAt =>
-        { createdAt.Property(_ => _.Date).HasColumnName("Created At").HasColumnType("TIMESTAMP").IsRequired(); });
+        { createdAt.Property(_ => _.Date).HasColumnName("CreatedAt").HasColumnType("datetime2").IsRequired(); });
     }
 }

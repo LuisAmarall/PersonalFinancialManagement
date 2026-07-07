@@ -17,7 +17,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
         builder.Property(_ => _.ToReceiveId).HasColumnName("ToReceiveId").HasColumnType("UNIQUEIDENTIFIER").IsRequired();
 
         builder.OwnsOne(_ => _.Amount, amount =>
-        { amount.Property(_ => _.Value).HasColumnName("Amount").HasColumnType("DECIMAL(00,00)").IsRequired(); });
+        { amount.Property(_ => _.Value).HasColumnName("Amount").HasColumnType("DECIMAL(18, 2)").IsRequired(); });
 
         builder.OwnsOne(_ => _.Modality, modality =>
         { modality.Property(_ => _.Modality).HasColumnName("Modality").HasColumnType("VARCHAR").HasMaxLength(50).IsRequired(); });
@@ -32,7 +32,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
         { description.Property(_ => _.Information).HasColumnName("Description").HasColumnType("VARCHAR").HasMaxLength(200).IsRequired(); });
 
         builder.OwnsOne(_ => _.TransactionDate, transactionDate =>
-        { transactionDate.Property(_ => _.Date).HasColumnName("Transaction Date").HasColumnType("TIMESTAMP").IsRequired(); });
+        { transactionDate.Property(_ => _.Date).HasColumnName("Transaction Date").HasColumnType("datetime2").IsRequired(); });
 
     }
 }
