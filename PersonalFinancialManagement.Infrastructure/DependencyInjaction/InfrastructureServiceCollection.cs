@@ -17,6 +17,6 @@ public static class InfrastructureServiceCollection
     private static void RegisterDbContext(IServiceCollection service, IConfiguration configuration)
     {
         service.AddDbContext<ApplicationContext>(option =>
-        option.UseSqlServer("Data Source=Mark1;Initial Catalog=PersonalFinancialSQLServerDataBase;Integrated Security=True;Pooling=False;Encrypt=True;Trust Server Certificate=True;"), ServiceLifetime.Transient, ServiceLifetime.Transient);
+        option.UseSqlServer(configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient, ServiceLifetime.Transient);
     }
 }

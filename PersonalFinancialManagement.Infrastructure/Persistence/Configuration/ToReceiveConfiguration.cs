@@ -24,21 +24,21 @@ public class ToReceiveConfiguration : IEntityTypeConfiguration<ToReceive>
         { observation.Property(_ => _.Information).HasColumnName("Observation").HasColumnType("VARCHAR").HasMaxLength(200).IsRequired(); });
 
         builder.OwnsOne(_ => _.OriginalValue, originalValue =>
-        { originalValue.Property(_ => _.Value).HasColumnName("Original Value").HasColumnType("DECIMAL(00,00)").IsRequired(); });
+        { originalValue.Property(_ => _.Value).HasColumnName("Original Value").HasColumnType("DECIMAL(18, 2)").IsRequired(); });
 
         builder.OwnsOne(_ => _.AmountReceived, amountReceived =>
-        { amountReceived.Property(_ => _.Value).HasColumnName("Amount Received").HasColumnType("DECIMAL(00,00)").IsRequired(); });
+        { amountReceived.Property(_ => _.Value).HasColumnName("Amount Received").HasColumnType("DECIMAL(18, 2)").IsRequired(); });
 
         builder.OwnsOne(_ => _.DueDate, dueDate =>
-        { dueDate.Property(_ => _.Date).HasColumnName("Due Date").HasColumnType("TIMESTAMP").IsRequired(); });
+        { dueDate.Property(_ => _.Date).HasColumnName("Due Date").HasColumnType("datetime2").IsRequired(); });
 
         builder.OwnsOne(_ => _.ReferenceDate, referenceDate =>
-        { referenceDate.Property(_ => _.Date).HasColumnName("Reference Date").HasColumnType("TIMESTAMP").IsRequired(); });
+        { referenceDate.Property(_ => _.Date).HasColumnName("Reference Date").HasColumnType("datetime2").IsRequired(); });
 
         builder.OwnsOne(_ => _.DateReceipt, dateReceipt =>
-        { dateReceipt.Property(_ => _.Date).HasColumnName("Date Receipt").HasColumnType("TIMESTAMP").IsRequired(); });
+        { dateReceipt.Property(_ => _.Date).HasColumnName("Date Receipt").HasColumnType("datetime2").IsRequired(); });
 
         builder.OwnsOne(_ => _.CreatedAt, createdAt =>
-        { createdAt.Property(_ => _.Date).HasColumnName("Created At").HasColumnType("TIMESTAMP").IsRequired(); });
+        { createdAt.Property(_ => _.Date).HasColumnName("Created At").HasColumnType("datetime2").IsRequired(); });
     }
 }

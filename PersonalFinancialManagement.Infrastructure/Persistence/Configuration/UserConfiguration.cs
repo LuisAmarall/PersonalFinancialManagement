@@ -20,8 +20,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.OwnsOne(_ => _.Password, password =>
         { password.Property(_ => _.Key).HasColumnName("Password").HasColumnType("VARCHAR").HasMaxLength(10).IsRequired(); });
 
-        builder.Property(_ => _.CreatedAt).HasColumnName("CreatedAt").HasColumnType("TIMESTAMP").IsRequired();
+        builder.Property(_ => _.CreatedAt).HasColumnName("CreatedAt").HasColumnType("datetime2").IsRequired();
 
-        builder.Property(_ => _.DeletedAt).HasColumnName("DeletedAt").HasColumnType("TIMESTAMP");
+        builder.Property(_ => _.DeletedAt).HasColumnName("DeletedAt").HasColumnType("datetime2");
     }
 }

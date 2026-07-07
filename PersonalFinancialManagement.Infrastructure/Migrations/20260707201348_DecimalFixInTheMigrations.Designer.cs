@@ -12,8 +12,8 @@ using PersonalFinancialManagement.Infrastructure.Persistence.Context;
 namespace PersonalFinancialManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20260705183457_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20260707201348_DecimalFixInTheMigrations")]
+    partial class DecimalFixInTheMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,13 +31,12 @@ namespace PersonalFinancialManagement.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<byte[]>("CreatedAt")
-                        .IsRequired()
-                        .HasColumnType("TIMESTAMP")
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2")
                         .HasColumnName("CreatedAt");
 
-                    b.Property<byte[]>("DeletedAt")
-                        .HasColumnType("TIMESTAMP")
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2")
                         .HasColumnName("DeletedAt");
 
                     b.Property<Guid>("UserId")
@@ -124,13 +123,12 @@ namespace PersonalFinancialManagement.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<byte[]>("CreatedAt")
-                        .IsRequired()
-                        .HasColumnType("TIMESTAMP")
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2")
                         .HasColumnName("CreatedAt");
 
-                    b.Property<byte[]>("DeletedAt")
-                        .HasColumnType("TIMESTAMP")
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2")
                         .HasColumnName("DeletedAt");
 
                     b.HasKey("Id");
@@ -193,7 +191,7 @@ namespace PersonalFinancialManagement.Infrastructure.Migrations
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<decimal>("Value")
-                                .HasColumnType("DECIMAL(00,00)")
+                                .HasColumnType("DECIMAL(18, 2)")
                                 .HasColumnName("Amount Paid");
 
                             b1.HasKey("ToPayId");
@@ -209,10 +207,9 @@ namespace PersonalFinancialManagement.Infrastructure.Migrations
                             b1.Property<Guid>("ToPayId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<byte[]>("Date")
-                                .IsRequired()
-                                .HasColumnType("TIMESTAMP")
-                                .HasColumnName("Created At");
+                            b1.Property<DateTime>("Date")
+                                .HasColumnType("datetime2")
+                                .HasColumnName("CreatedAt");
 
                             b1.HasKey("ToPayId");
 
@@ -246,9 +243,8 @@ namespace PersonalFinancialManagement.Infrastructure.Migrations
                             b1.Property<Guid>("ToPayId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<byte[]>("Date")
-                                .IsRequired()
-                                .HasColumnType("TIMESTAMP")
+                            b1.Property<DateTime>("Date")
+                                .HasColumnType("datetime2")
                                 .HasColumnName("Due Date");
 
                             b1.HasKey("ToPayId");
@@ -265,7 +261,7 @@ namespace PersonalFinancialManagement.Infrastructure.Migrations
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<decimal>("Value")
-                                .HasColumnType("DECIMAL(00,00)")
+                                .HasColumnType("DECIMAL(18, 2)")
                                 .HasColumnName("Original Value");
 
                             b1.HasKey("ToPayId");
@@ -281,9 +277,8 @@ namespace PersonalFinancialManagement.Infrastructure.Migrations
                             b1.Property<Guid>("ToPayId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<byte[]>("Date")
-                                .IsRequired()
-                                .HasColumnType("TIMESTAMP")
+                            b1.Property<DateTime>("Date")
+                                .HasColumnType("datetime2")
                                 .HasColumnName("Payment Date");
 
                             b1.HasKey("ToPayId");
@@ -299,9 +294,8 @@ namespace PersonalFinancialManagement.Infrastructure.Migrations
                             b1.Property<Guid>("ToPayId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<byte[]>("Date")
-                                .IsRequired()
-                                .HasColumnType("TIMESTAMP")
+                            b1.Property<DateTime>("Date")
+                                .HasColumnType("datetime2")
                                 .HasColumnName("Reference Date");
 
                             b1.HasKey("ToPayId");
@@ -342,7 +336,7 @@ namespace PersonalFinancialManagement.Infrastructure.Migrations
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<decimal>("Value")
-                                .HasColumnType("DECIMAL(00,00)")
+                                .HasColumnType("DECIMAL(18, 2)")
                                 .HasColumnName("Amount Received");
 
                             b1.HasKey("ToReceiveId");
@@ -358,9 +352,8 @@ namespace PersonalFinancialManagement.Infrastructure.Migrations
                             b1.Property<Guid>("ToReceiveId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<byte[]>("Date")
-                                .IsRequired()
-                                .HasColumnType("TIMESTAMP")
+                            b1.Property<DateTime>("Date")
+                                .HasColumnType("datetime2")
                                 .HasColumnName("Created At");
 
                             b1.HasKey("ToReceiveId");
@@ -376,9 +369,8 @@ namespace PersonalFinancialManagement.Infrastructure.Migrations
                             b1.Property<Guid>("ToReceiveId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<byte[]>("Date")
-                                .IsRequired()
-                                .HasColumnType("TIMESTAMP")
+                            b1.Property<DateTime>("Date")
+                                .HasColumnType("datetime2")
                                 .HasColumnName("Date Receipt");
 
                             b1.HasKey("ToReceiveId");
@@ -413,9 +405,8 @@ namespace PersonalFinancialManagement.Infrastructure.Migrations
                             b1.Property<Guid>("ToReceiveId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<byte[]>("Date")
-                                .IsRequired()
-                                .HasColumnType("TIMESTAMP")
+                            b1.Property<DateTime>("Date")
+                                .HasColumnType("datetime2")
                                 .HasColumnName("Due Date");
 
                             b1.HasKey("ToReceiveId");
@@ -451,7 +442,7 @@ namespace PersonalFinancialManagement.Infrastructure.Migrations
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<decimal>("Value")
-                                .HasColumnType("DECIMAL(00,00)")
+                                .HasColumnType("DECIMAL(18, 2)")
                                 .HasColumnName("Original Value");
 
                             b1.HasKey("ToReceiveId");
@@ -467,9 +458,8 @@ namespace PersonalFinancialManagement.Infrastructure.Migrations
                             b1.Property<Guid>("ToReceiveId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<byte[]>("Date")
-                                .IsRequired()
-                                .HasColumnType("TIMESTAMP")
+                            b1.Property<DateTime>("Date")
+                                .HasColumnType("datetime2")
                                 .HasColumnName("Reference Date");
 
                             b1.HasKey("ToReceiveId");
@@ -513,7 +503,7 @@ namespace PersonalFinancialManagement.Infrastructure.Migrations
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<decimal>("Value")
-                                .HasColumnType("DECIMAL(00,00)")
+                                .HasColumnType("DECIMAL(18, 2)")
                                 .HasColumnName("Amount");
 
                             b1.HasKey("TransactionId");
@@ -548,9 +538,8 @@ namespace PersonalFinancialManagement.Infrastructure.Migrations
                             b1.Property<Guid>("TransactionId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<byte[]>("Date")
-                                .IsRequired()
-                                .HasColumnType("TIMESTAMP")
+                            b1.Property<DateTime>("Date")
+                                .HasColumnType("datetime2")
                                 .HasColumnName("Transaction Date");
 
                             b1.HasKey("TransactionId");

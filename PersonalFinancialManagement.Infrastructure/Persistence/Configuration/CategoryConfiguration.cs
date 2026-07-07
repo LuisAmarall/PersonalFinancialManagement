@@ -19,9 +19,8 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         builder.OwnsOne(_ => _.Observation, observation =>
         { observation.Property(_ => _.Information).HasColumnName("Observation").HasColumnType("VARCHAR").HasMaxLength(200).IsRequired(); });
 
-        builder.OwnsOne(_ => _.CreatedAt, createdAt =>
-        { createdAt.Property(_ => _.Date).HasColumnName("Created At").HasColumnType("TIMESTAMP").IsRequired(); });
+        builder.Property(_ => _.CreatedAt).HasColumnName("CreatedAt").HasColumnType("datetime2").IsRequired();
 
-        builder.Property(_ => _.DeletedAt).HasColumnName("DeletedAt").HasColumnType("TIMESTAMP");
+        builder.Property(_ => _.DeletedAt).HasColumnName("DeletedAt").HasColumnType("datetime2");
     }
 }
