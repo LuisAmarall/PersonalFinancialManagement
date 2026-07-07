@@ -2,7 +2,7 @@
 using DomainDesign.Shared;
 using DomainDesign.Exceptions;
 
-namespace PersonalFinancialManagement.Core.Models.ValueObjects;
+namespace PersonalFinancialManagement.Core.ValueObjects;
 
 public sealed class Amount : ValueObject<Amount>
 {

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace PersonalFinancialManagement.Core.Models.Shared;
+namespace PersonalFinancialManagement.Core.Shared;
 
 public abstract class ValueObject<Type> : IEquatable<Type> where Type : ValueObject<Type>
 {

@@ -1,8 +1,7 @@
 ﻿using DomainDesign.Exceptions;
 using PersonalFinancialManagement.Core.ValueObjects;
-using PersonalFinancialManagement.Core.Models.ValueObjects;
 
-namespace PersonalFinancialManagement.Core.Models.Entities;
+namespace PersonalFinancialManagement.Core.Entities;
 
 public class Transaction
 {

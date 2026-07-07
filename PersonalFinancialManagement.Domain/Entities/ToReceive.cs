@@ -1,10 +1,7 @@
 ﻿using DomainDesign.Exceptions;
-using Microsoft.VisualBasic;
-using PersonalFinancialManagement.Core.Models.ValueObjects;
 using PersonalFinancialManagement.Core.ValueObjects;
-using System.Transactions;
 
-namespace PersonalFinancialManagement.Core.Models.Entities;
+namespace PersonalFinancialManagement.Core.Entities;
 
 public class ToReceive
 {

@@ -1,7 +1,7 @@
 ﻿using DomainDesign.Exceptions;
 using DomainDesign.Shared;
 
-namespace PersonalFinancialManagement.Core.Models.ValueObjects;
+namespace PersonalFinancialManagement.Core.ValueObjects;
 
 public sealed class TransactionDate : ValueObject<TransactionDate>
 {

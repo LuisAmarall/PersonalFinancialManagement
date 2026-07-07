@@ -1,7 +1,7 @@
 ﻿using DomainDesign.Shared;
 using DomainDesign.Exceptions;
 
-namespace PersonalFinancialManagement.Core.Models.ValueObjects;
+namespace PersonalFinancialManagement.Core.ValueObjects;
 
 public enum PrimaryMode
 {
@@ -24,7 +24,7 @@ public sealed class TransactionType : ValueObject<TransactionType>
     public SecondaryMode? Details { get; }
     public CreditCardInstallments? Installments { get; }
 
-    private TransactionType(PrimaryMode modality,
+    public TransactionType(PrimaryMode modality,
         SecondaryMode? details, CreditCardInstallments? installments)
     {
         switch (modality)

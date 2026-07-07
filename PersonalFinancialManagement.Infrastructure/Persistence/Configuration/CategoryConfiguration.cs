@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PersonalFinancialManagement.Core.Models.Entities;
+using PersonalFinancialManagement.Core.Entities;
 
 namespace PersonalFinancialManagement.Infrastructure.Persistence.Configuration;
 
@@ -19,7 +19,8 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         builder.OwnsOne(_ => _.Observation, observation =>
         { observation.Property(_ => _.Information).HasColumnName("Observation").HasColumnType("VARCHAR").HasMaxLength(200).IsRequired(); });
 
-        builder.Property(_ => _.CreatedAt).HasColumnName("CreatedAt").HasColumnType("TIMESTAMP").IsRequired();
+        builder.OwnsOne(_ => _.CreatedAt, createdAt =>
+        { createdAt.Property(_ => _.Date).HasColumnName("Created At").HasColumnType("TIMESTAMP").IsRequired(); });
 
         builder.Property(_ => _.DeletedAt).HasColumnName("DeletedAt").HasColumnType("TIMESTAMP");
     }

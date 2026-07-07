@@ -6,4 +6,20 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+	<PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="8.1.4" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.24" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PersonalFinancialManagement.Infrastructure\PersonalFinancialManagement.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ProjectDesign">
+      <HintPath>..\..\ProjectDesign\bin\Debug\ProjectDesign.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
