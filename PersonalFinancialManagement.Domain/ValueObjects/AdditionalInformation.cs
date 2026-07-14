@@ -9,11 +9,11 @@ public sealed class AdditionalInformation : ValueObject<AdditionalInformation>
 
     public AdditionalInformation(string information)
     {
-        if (information.Length > 200)
-            throw new InvalidValueObjectException($"The description must be less than or equal to 200 characters. Please check the field {nameof(information)}.");
-
         if (string.IsNullOrWhiteSpace(information))
             throw new InvalidValueObjectException($"A description is required for the transaction. Please check the field {nameof(information)}.");
+       
+        if (information.Length > 200)
+            throw new InvalidValueObjectException($"The description must be less than or equal to 200 characters. Please check the field {nameof(information)}.");
 
         Information = information.Trim();
     }

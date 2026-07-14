@@ -15,8 +15,6 @@ public class ToPayConfiguration : IEntityTypeConfiguration<ToPay>
 
         builder.Property(_ => _.CategoryId).HasColumnName("CategoryId").HasColumnType("UNIQUEIDENTIFIER").IsRequired();
 
-        builder.Property(_ => _.Transaction).HasColumnName("TransactionId").HasColumnType("UNIQUEIDENTIFIER").IsRequired();
-
         builder.OwnsOne(_ => _.Description, description =>
         { description.Property(_ => _.Information).HasColumnName("Description").HasColumnType("VARCHAR").HasMaxLength(200).IsRequired(); });
 

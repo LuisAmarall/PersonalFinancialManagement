@@ -8,7 +8,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.ToTable("Transfers")
+        builder.ToTable("User")
             .HasKey(_ => _.Id);
 
         builder.OwnsOne(_ => _.FullName, name =>
