@@ -15,8 +15,6 @@ public class ToReceiveConfiguration : IEntityTypeConfiguration<ToReceive>
 
         builder.Property(_ => _.CategoryId).HasColumnName("CategoryId").HasColumnType("UNIQUEIDENTIFIER").IsRequired();
 
-        builder.Property(_ => _.TransactionId).HasColumnName("TransactionId").HasColumnType("UNIQUEIDENTIFIER").IsRequired();
-
         builder.OwnsOne(_ => _.Description, description =>
         { description.Property(_ => _.Information).HasColumnName("Description").HasColumnType("VARCHAR").HasMaxLength(200).IsRequired(); });
 

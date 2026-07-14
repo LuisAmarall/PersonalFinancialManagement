@@ -9,7 +9,6 @@ public class ApplicationContext : DbContext
     public DbSet<Category> Category { get; set; }
     public DbSet<ToPay> ToPay { get; set; }
     public DbSet<ToReceive> ToReceive { get; set; }
-    public DbSet<Transaction> Transaction { get; set; }
 
     public ApplicationContext(DbContextOptions<ApplicationContext>options) : base(options) { }
 

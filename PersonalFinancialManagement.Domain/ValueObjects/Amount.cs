@@ -1,5 +1,5 @@
-﻿using System.Globalization;
-using DomainDesign.Shared;
+﻿using DomainDesign.Shared;
+using System.Globalization;
 using DomainDesign.Exceptions;
 
 namespace PersonalFinancialManagement.Core.ValueObjects;
