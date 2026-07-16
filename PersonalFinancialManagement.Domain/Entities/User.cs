@@ -1,4 +1,6 @@
 ﻿using DomainDesign.ValueObjects;
+using PersonalFinancialManagement.Core.ValueObjects;
+using System.Net.Mail;
 
 namespace PersonalFinancialManagement.Core.Entities;
 
@@ -16,21 +18,43 @@ public class User
 
     private User() { }
 
-    public User(Name fullName, Email emailAddress, Password password)
+    private static User Create(Name fullName, Email emailAddress, Password password)
     {
-        ArgumentNullException.ThrowIfNull(fullName);
-        ArgumentNullException.ThrowIfNull(emailAddress);
-        ArgumentNullException.ThrowIfNull(password);
-
-        Id = Guid.NewGuid();
-        FullName = fullName;
-        EmailAddress = emailAddress;
-        Password = password;
-        CreatedAt = DateTime.UtcNow;
+        AttributeValidation(fullName, emailAddress, password);
+        return new User
+        {
+            Id = Guid.NewGuid(),
+            FullName = fullName,
+            EmailAddress = emailAddress,
+            Password = password,
+            CreatedAt = DateTime.UtcNow
+        };
     }
 
     public static User CreateUser(Name fullName, Email emailAddress, Password password)
-        => new(fullName, emailAddress, password);
+        => Create(fullName, emailAddress, password);
+
+    private static void AttributeValidation(Name fullName, Email emailAddress, Password password)
+    {
+        ArgumentNullException.ThrowIfNull(fullName, nameof(fullName));
+        ArgumentNullException.ThrowIfNull(emailAddress, nameof(emailAddress));
+        ArgumentNullException.ThrowIfNull(password, nameof(password));
+    }
+
+    public void ChengeFullName(Name fullName)
+    {
+        if (HasChenged(fullName, FullName)) { FullName = fullName; }
+    }
+
+    public void ChengeEmailAddress(Email emailAddress)
+    {
+        if (HasChenged(emailAddress, EmailAddress)) { EmailAddress = emailAddress; }
+    }
+
+    public void ChengePassword(Password password)
+    {
+        if (HasChenged(password, Password)) { Password = password; }
+    }
 
     public void Delete()
     {
@@ -46,5 +70,11 @@ public class User
             throw new InvalidOperationException("Transaction is not deleted!");
 
         DeletedAt = null;
+    }
+
+    private static bool HasChenged<T>(T newValue, T currentValue)
+    {
+         ArgumentNullException.ThrowIfNull(newValue);
+        return !EqualityComparer<T>.Default.Equals(newValue, currentValue);
     }
 }
