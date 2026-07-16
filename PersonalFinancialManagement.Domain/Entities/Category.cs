@@ -42,6 +42,16 @@ public class Category
         ArgumentNullException.ThrowIfNull(observation, nameof(observation));
     }
 
+    public void ChengeDescription(AdditionalInformation description)
+    {
+        if (HaChenged(description, Description)) { Description = description; }
+    }
+
+    public void ChengeObservation(AdditionalInformation observation)
+    {
+        if (HaChenged(observation, Observation)) { Observation = observation; }
+    }
+
     public void Delete()
     {
         if (DeletedAt.HasValue)
@@ -56,5 +66,11 @@ public class Category
             throw new InvalidOperationException("User is not deleted!");
 
         DeletedAt = null;
+    }
+
+    private static bool HaChenged<T>(T? newValue, T? currentValue)
+    {
+        ArgumentNullException.ThrowIfNull(newValue);
+        return !EqualityComparer<T>.Default.Equals(newValue, currentValue);
     }
 }
