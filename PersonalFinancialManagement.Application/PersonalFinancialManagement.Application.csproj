@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PersonalFinancialManagement.Domain\PersonalFinancialManagement.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ProjectDesign">
+      <HintPath>..\..\ProjectDesign\bin\Debug\ProjectDesign.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
