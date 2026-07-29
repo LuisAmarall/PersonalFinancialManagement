@@ -20,6 +20,7 @@
 	</ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PersonalFinancialManagement.Application\PersonalFinancialManagement.Application.csproj" />
     <ProjectReference Include="..\PersonalFinancialManagement.Domain\PersonalFinancialManagement.Core.csproj" />
   </ItemGroup>
 
