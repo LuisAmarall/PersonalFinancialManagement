@@ -1,8 +1,8 @@
 ﻿using DomainDesign.ValueObjects;
 using Microsoft.EntityFrameworkCore;
-using PersonalFinancialManagement.Application.Interfaces.Repositories;
 using PersonalFinancialManagement.Core.Entities;
 using PersonalFinancialManagement.Infrastructure.Persistence.Context;
+using PersonalFinancialManagement.Application.Interfaces.Repositories;
 
 namespace PersonalFinancialManagement.Infrastructure.Repositories;
 public class UserRepository : IUserRepository
@@ -11,48 +11,38 @@ public class UserRepository : IUserRepository
 
     public UserRepository(ApplicationContext context)
     {
-        _context = context;
+        _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
-    public async Task<User?> FindUserByIdAsync(Guid id)
+    public void AddUser(User user)
     {
-        return await _context.Users.AsNoTracking().FirstOrDefaultAsync(_ => _.Id == id);
+        _context.Users.Add(user);
     }
-
-    public async Task<User?> FindUserByEmailAsync(Email email)
+    public void UpdateUserAsync(User user)
     {
-        return await _context.Users.AsNoTracking().FirstOrDefaultAsync(_ => _.EmailAddress == email);
-    }
-
-    public async Task<User?> FindUserByNameAsync(Name name)
-    {
-        return await _context.Users.AsNoTracking().FirstOrDefaultAsync(_ => _.FullName == name);
-    }
-
-    public async Task<User> AddUserAsync(User user)
-    {
-        await _context.Users.AddAsync(user);
-        return user;
-    }
-
-    public async Task<User> UpdateUserAsync(User user)
-    {
-        var updatedUser = await _context.Users.AsNoTracking().FirstOrDefaultAsync(_ => _.Id == user.Id);
+        var updatedUser = _context.Users.AsNoTracking().FirstOrDefaultAsync(_ => _.Id == user.Id);
 
         _context.Entry(updatedUser).CurrentValues.SetValues(user);
         _context.Update(updatedUser);
-
-        return user;
     }
 
-    public async Task InactivationUserAsync(User user)
+    public async Task<User?> FindUserByIdAsync(Guid id, CancellationToken cancellationToken = default(CancellationToken))
     {
-        user.Delete();
-        await UpdateUserAsync(user);
+        return await _context.Users.AsNoTracking().FirstOrDefaultAsync(_ => _.Id == id, cancellationToken);
     }
 
-    public Task SaveChangesAsync()
+    public async Task<User?> FindUserByEmailAsync(Email email, CancellationToken cancellationToken = default(CancellationToken))
     {
-        return _context.SaveChangesAsync();
+        return await _context.Users.AsNoTracking().FirstOrDefaultAsync(_ => _.EmailAddress == email, cancellationToken);
+    }
+
+    public async Task<User?> FindUserByNameAsync(Name name, CancellationToken cancellationToken = default(CancellationToken))
+    {
+        return await _context.Users.AsNoTracking().FirstOrDefaultAsync(_ => _.FullName == name, cancellationToken);
+    }
+
+    Task IUserRepository.SaveChangesAsync(CancellationToken cancellationToken)
+    {
+        return _context.SaveChangesAsync(cancellationToken);
     }
 }

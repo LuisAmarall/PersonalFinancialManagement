@@ -5,11 +5,10 @@ namespace PersonalFinancialManagement.Application.Interfaces.Repositories;
 
 public interface IUserRepository
 {
-    Task<User> AddUserAsync(User user);
-    Task<User?> FindUserByIdAsync(Guid id);
-    Task<User?> FindUserByNameAsync(Name name);
-    Task<User?> FindUserByEmailAsync(Email email);
-    Task<User> UpdateUserAsync(User user);
-    Task InactivationUserAsync(User user);
-    Task SaveChangesAsync();
+    void AddUser(User user); 
+    void UpdateUserAsync(User user);
+    Task<User?> FindUserByIdAsync(Guid id, CancellationToken cancellationToken = default(CancellationToken));
+    Task<User?> FindUserByNameAsync(Name name, CancellationToken cancellationToken = default(CancellationToken));
+    Task<User?> FindUserByEmailAsync(Email email, CancellationToken cancellationToken = default(CancellationToken));
+    Task SaveChangesAsync(CancellationToken cancellationToken = default);
 }
