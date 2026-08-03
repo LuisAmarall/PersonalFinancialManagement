@@ -21,10 +21,10 @@ public class CategoryRepository : ICategoryRepository
 
     public void UpdateCategory(Category category)
     {
-        var updatedCategory = _context.Category.AsNoTracking().FirstOrDefault(_ => _.Id == category.Id);
+        var existingCategory = _context.Category.AsNoTracking().FirstOrDefault(_ => _.Id == category.Id);
 
-        _context.Entry(updatedCategory).CurrentValues.SetValues(category);
-        _context.Update(updatedCategory);
+        _context.Entry(existingCategory).CurrentValues.SetValues(category);
+        _context.Update(existingCategory);
     }
 
     public async Task<Category?> FindCategoryByIdAsync(Guid id, CancellationToken cancellationToken = default)
