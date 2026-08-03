@@ -20,10 +20,10 @@ public class UserRepository : IUserRepository
     }
     public void UpdateUserAsync(User user)
     {
-        var updatedUser = _context.Users.AsNoTracking().FirstOrDefaultAsync(_ => _.Id == user.Id);
+        var existingUser = _context.Users.AsNoTracking().FirstOrDefaultAsync(_ => _.Id == user.Id);
 
-        _context.Entry(updatedUser).CurrentValues.SetValues(user);
-        _context.Update(updatedUser);
+        _context.Entry(existingUser).CurrentValues.SetValues(user);
+        _context.Update(existingUser);
     }
 
     public async Task<User?> FindUserByIdAsync(Guid id, CancellationToken cancellationToken = default(CancellationToken))

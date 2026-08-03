@@ -9,8 +9,8 @@ public interface IToPayRepository
     void AddToPay(ToPay toPay);
     void UpdateToPay(ToPay toPay);
     Task<IReadOnlyList<ToPay?>> GetAllToPays();
-    Task<ToPay?> GetToPayByOriginalValue(Amount originalValue);
     Task<ToPay?> FindToPayByIdAsync(Guid id, CancellationToken cancellationToken = default(CancellationToken));
+    Task<ToPay?> GetToPayByOriginalValue(Amount originalValue, CancellationToken cancellationToken = default(CancellationToken));
     Task<ToPay?> FindToPayByPaymentDateAsync(DateTime paymentDate, CancellationToken cancellationToken = default(CancellationToken));
     Task<ToPay?> FindToPayByDueDateAsync(DateTime dueDate, CancellationToken cancellationToken = default(CancellationToken));
     Task SaveChangesAsync(CancellationToken cancellationToken = default);
