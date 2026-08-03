@@ -38,7 +38,7 @@ public class ToPayRepository : IToPayRepository
         return await _context.ToPay.AsNoTracking().FirstOrDefaultAsync(_ => _.Id == id, cancellationToken);
     }
 
-    public async Task<ToPay?> GetToPayByOriginalValue(Amount originalValue, CancellationToken cancellationToken = default)
+    public async Task<ToPay?> FindToPayByOriginalValue(Amount originalValue, CancellationToken cancellationToken = default)
     {
         return await _context.ToPay.AsNoTracking().FirstOrDefaultAsync(_ => _.OriginalValue == originalValue, cancellationToken);
     }
