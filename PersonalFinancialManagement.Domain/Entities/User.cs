@@ -1,6 +1,4 @@
 ﻿using DomainDesign.ValueObjects;
-using PersonalFinancialManagement.Core.ValueObjects;
-using System.Net.Mail;
 
 namespace PersonalFinancialManagement.Core.Entities;
 
