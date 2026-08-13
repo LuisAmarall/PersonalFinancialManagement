@@ -20,4 +20,11 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contracts\Requests\ToReceive\" />
+    <Folder Include="Contracts\Requests\ToPay\" />
+    <Folder Include="Contracts\Responses\ToPay\" />
+    <Folder Include="Contracts\Responses\ToReceive\" />
+  </ItemGroup>
+
 </Project>
