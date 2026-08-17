@@ -82,7 +82,7 @@ public class ToReceive
         if (ChangeTracker.HasChanged(observation, Observation)) { Observation = observation; }
     }
 
-    public void ChengeOriginalValueTo(Amount originalValue)
+    public void ChangeOriginalValueTo(Amount originalValue)
     {
         ArgumentNullException.ThrowIfNull(originalValue);
 
