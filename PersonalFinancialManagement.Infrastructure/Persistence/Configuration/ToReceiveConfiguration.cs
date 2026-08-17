@@ -34,7 +34,7 @@ public class ToReceiveConfiguration : IEntityTypeConfiguration<ToReceive>
         { referenceDate.Property(_ => _.Date).HasColumnName("Reference Date").HasColumnType("datetime2").IsRequired(); });
 
         builder.OwnsOne(_ => _.DateReceipt, dateReceipt =>
-        { dateReceipt.Property(_ => _.Date).HasColumnName("Date Receipt").HasColumnType("datetime2").IsRequired(); });
+        { dateReceipt.Property(_ => _.Date).HasColumnName("Date Receipt").HasColumnType("datetime2").IsRequired(false); });
 
         builder.OwnsOne(_ => _.CreatedAt, createdAt =>
         { createdAt.Property(_ => _.Date).HasColumnName("Created At").HasColumnType("datetime2").IsRequired(); });

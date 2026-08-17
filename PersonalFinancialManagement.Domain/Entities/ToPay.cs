@@ -22,7 +22,7 @@ public class ToPay
 
     public TransactionDate DueDate { get; private set; }
     public TransactionDate ReferenceDate { get; private set; }
-    public TransactionDate PaymentDate { get; private set; }
+    public TransactionDate? PaymentDate { get; private set; }
     public TransactionDate CreatedAt { get; private set; }
 
     public ToPayStatus Status { get; private set; }
@@ -30,11 +30,9 @@ public class ToPay
     private ToPay() { }
 
     public static ToPay Create(Guid userId, Guid categoryId, AdditionalInformation description,
-        Amount originalValue, Amount amountPaid, TransactionDate dueDate, TransactionDate referenceDate,
-        TransactionDate paymentDate, TransactionDate createdAt)
+        Amount originalValue, TransactionDate dueDate, TransactionDate referenceDate, TransactionDate createdAt)
     {
-        AttributeValidation(userId, categoryId, description, originalValue, amountPaid,
-            dueDate, referenceDate, paymentDate, createdAt);
+        AttributeValidation(userId, categoryId, description, originalValue, dueDate, referenceDate, createdAt);
         return new ToPay
         {
             Id = Guid.NewGuid(),
@@ -42,18 +40,17 @@ public class ToPay
             CategoryId = categoryId,
             Description = description,
             OriginalValue = originalValue,
-            AmountPaid = amountPaid,
+            AmountPaid = Amount.Zero,
             DueDate = dueDate,
             ReferenceDate = referenceDate,
-            PaymentDate = paymentDate,
+            PaymentDate = null,
             CreatedAt = createdAt,
             Status = ToPayStatus.Pending
         };
     }
 
     private static void AttributeValidation(Guid userId, Guid categoryId, AdditionalInformation description,
-        Amount originalValue, Amount amountPaid, TransactionDate dueDate, TransactionDate referenceDate,
-        TransactionDate paymentDate, TransactionDate createdAt)
+        Amount originalValue, TransactionDate dueDate, TransactionDate referenceDate, TransactionDate createdAt)
     {
         if (userId == Guid.Empty)
             throw new InvalidValueObjectException($"A valid user is required for the ToPay. Please check the field {nameof(userId)}.");
@@ -62,10 +59,8 @@ public class ToPay
 
         ArgumentNullException.ThrowIfNull(description, nameof(description));
         ArgumentNullException.ThrowIfNull(originalValue, nameof(originalValue));
-        ArgumentNullException.ThrowIfNull(amountPaid, nameof(amountPaid));
         ArgumentNullException.ThrowIfNull(dueDate, nameof(dueDate));
         ArgumentNullException.ThrowIfNull(referenceDate, nameof(referenceDate));
-        ArgumentNullException.ThrowIfNull(paymentDate, nameof(paymentDate));
         ArgumentNullException.ThrowIfNull(createdAt, nameof(createdAt));
     }
 
