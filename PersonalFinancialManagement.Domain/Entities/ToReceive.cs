@@ -74,12 +74,12 @@ public class ToReceive
 
     public void ChangeDescription(AdditionalInformation description)
     {
-        if (HasChanged(description, Description)) { Description = description; }
+        if (ChangeTracker.HasChanged(description, Description)) { Description = description; }
     }
 
     public void ChangeObservation(AdditionalInformation observation)
     {
-        if (HasChanged(observation, Observation)) { Observation = observation; }
+        if (ChangeTracker.HasChanged(observation, Observation)) { Observation = observation; }
     }
 
     public void ChengeOriginalValueTo(Amount originalValue)
@@ -122,17 +122,11 @@ public class ToReceive
     {
         if (Status == ToReceiveStatus.Received)
             throw new DomainException($"Cannot reschedule the due date of a fully received ToReceive.");
-        if (HasChanged(dueDate, DueDate)) { DueDate = dueDate; }
+        if (ChangeTracker.HasChanged(dueDate, DueDate)) { DueDate = dueDate; }
     }
 
     public void ChangeReferenceDate(TransactionDate referenceDate)
     {
-        if (HasChanged(referenceDate, ReferenceDate)) { ReferenceDate = referenceDate; }
-    }
-
-    private static bool HasChanged<T>(T? newValue, T? currentValue)
-    {
-        ArgumentNullException.ThrowIfNull(newValue);
-        return !EqualityComparer<T>.Default.Equals(newValue, currentValue);
+        if (ChangeTracker.HasChanged(referenceDate, ReferenceDate)) { ReferenceDate = referenceDate; }
     }
 }

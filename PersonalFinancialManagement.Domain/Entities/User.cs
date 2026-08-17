@@ -39,22 +39,16 @@ public class User : SoftDeletableEntity
 
     public void ChengeFullName(Name fullName)
     {
-        if (HasChenged(fullName, FullName)) { FullName = fullName; }
+        if (ChangeTracker.HasChanged(fullName, FullName)) { FullName = fullName; }
     }
 
     public void ChengeEmailAddress(Email emailAddress)
     {
-        if (HasChenged(emailAddress, EmailAddress)) { EmailAddress = emailAddress; }
+        if (ChangeTracker.HasChanged(emailAddress, EmailAddress)) { EmailAddress = emailAddress; }
     }
 
     public void ChengePassword(Password password)
     {
-        if (HasChenged(password, Password)) { Password = password; }
-    }
-
-    private static bool HasChenged<T>(T newValue, T currentValue)
-    {
-         ArgumentNullException.ThrowIfNull(newValue);
-        return !EqualityComparer<T>.Default.Equals(newValue, currentValue);
+        if (ChangeTracker.HasChanged(password, Password)) { Password = password; }
     }
 }

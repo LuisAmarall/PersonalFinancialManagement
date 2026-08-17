@@ -66,7 +66,7 @@ public class ToPay
 
     public void ChangeDescriptionTo(AdditionalInformation description)
     {
-        if (HasChanged(description, Description)) { Description = description; }
+        if (ChangeTracker.HasChanged(description, Description)) { Description = description; }
     }
 
     public void ChangeOriginalValueTo(Amount originalValue)
@@ -109,17 +109,11 @@ public class ToPay
     {
         if (Status == ToPayStatus.Paid)
             throw new DomainException("Cannot reschedule the due date of a fully paid payable."); 
-        if (HasChanged(dueDate, DueDate)) { DueDate = dueDate; }
+        if (ChangeTracker.HasChanged(dueDate, DueDate)) { DueDate = dueDate; }
     }
 
     public void ChangeReferenceDateTo(TransactionDate referenceDate)
     {
-        if (HasChanged(referenceDate, ReferenceDate)) { ReferenceDate = referenceDate; }
-    }
-
-    private static bool HasChanged<T>(T? newValue, T? currentValue)
-    {
-        ArgumentNullException.ThrowIfNull(newValue);
-        return !EqualityComparer<T>.Default.Equals(newValue, currentValue);
+        if (ChangeTracker.HasChanged(referenceDate, ReferenceDate)) { ReferenceDate = referenceDate; }
     }
 }
