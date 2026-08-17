@@ -37,17 +37,17 @@ public class User : SoftDeletableEntity
         ArgumentNullException.ThrowIfNull(password, nameof(password));
     }
 
-    public void ChengeFullName(Name fullName)
+    public void ChangeFullName(Name fullName)
     {
         if (ChangeTracker.HasChanged(fullName, FullName)) { FullName = fullName; }
     }
 
-    public void ChengeEmailAddress(Email emailAddress)
+    public void ChangeEmailAddress(Email emailAddress)
     {
         if (ChangeTracker.HasChanged(emailAddress, EmailAddress)) { EmailAddress = emailAddress; }
     }
 
-    public void ChengePassword(Password password)
+    public void ChangePassword(Password password)
     {
         if (ChangeTracker.HasChanged(password, Password)) { Password = password; }
     }

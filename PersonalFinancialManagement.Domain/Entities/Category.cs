@@ -41,12 +41,12 @@ public class Category : SoftDeletableEntity
         ArgumentNullException.ThrowIfNull(observation, nameof(observation));
     }
 
-    public void ChengeDescription(AdditionalInformation description)
+    public void ChangeDescription(AdditionalInformation description)
     {
         if (ChangeTracker.HasChanged(description, Description)) { Description = description; }
     }
 
-    public void ChengeObservation(AdditionalInformation observation)
+    public void ChangeObservation(AdditionalInformation observation)
     {
         if (ChangeTracker.HasChanged(observation, Observation)) { Observation = observation; }
     }
