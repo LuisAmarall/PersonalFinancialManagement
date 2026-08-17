@@ -3,7 +3,7 @@ using PersonalFinancialManagement.Core.ValueObjects;
 
 namespace PersonalFinancialManagement.Core.Entities;
 
-public class Category
+public class Category : SoftDeletableEntity
 {
     public Guid Id { get; private set; }
     public Guid UserId { get; private set; }
@@ -12,8 +12,6 @@ public class Category
     public AdditionalInformation Observation { get; private set; }
 
     public DateTime CreatedAt { get; private set; }
-    public DateTime? DeletedAt { get; private set; }
-    public bool IsDeleted() => DeletedAt.HasValue;
 
     private Category() { }
 
@@ -51,22 +49,6 @@ public class Category
     public void ChengeObservation(AdditionalInformation observation)
     {
         if (HaChenged(observation, Observation)) { Observation = observation; }
-    }
-
-    public void Delete()
-    {
-        if (DeletedAt.HasValue)
-            throw new InvalidOperationException("Category is already deleted!");
-
-        DeletedAt = DateTime.UtcNow;
-    }
-
-    public void Restore()
-    {
-        if (!DeletedAt.HasValue)
-            throw new InvalidOperationException("Category is not deleted!");
-
-        DeletedAt = null;
     }
 
     private static bool HaChenged<T>(T? newValue, T? currentValue)
