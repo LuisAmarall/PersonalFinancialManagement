@@ -2,7 +2,7 @@
 
 namespace PersonalFinancialManagement.Core.Entities;
 
-public class User
+public class User : SoftDeletableEntity
 {
     public Guid Id { get; private set; }
 
@@ -11,8 +11,6 @@ public class User
     public Password Password { get; private set; }
 
     public DateTime CreatedAt { get; private set; } = DateTime.Now;
-    public DateTime? DeletedAt { get; private set; }
-    public bool IsDeleted() => DeletedAt.HasValue;
 
     private User() { }
 
@@ -52,22 +50,6 @@ public class User
     public void ChengePassword(Password password)
     {
         if (HasChenged(password, Password)) { Password = password; }
-    }
-
-    public void Delete()
-    {
-        if (DeletedAt.HasValue)
-            throw new InvalidOperationException("User is already deleted!");
-
-        DeletedAt = DateTime.UtcNow;
-    }
-
-    public void Restore()
-    {
-        if (!DeletedAt.HasValue)
-            throw new InvalidOperationException("User is not deleted!");
-
-        DeletedAt = null;
     }
 
     private static bool HasChenged<T>(T newValue, T currentValue)
