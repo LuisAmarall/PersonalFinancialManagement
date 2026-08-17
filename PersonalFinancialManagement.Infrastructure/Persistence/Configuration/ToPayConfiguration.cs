@@ -31,7 +31,7 @@ public class ToPayConfiguration : IEntityTypeConfiguration<ToPay>
         { referenceDate.Property(_ => _.Date).HasColumnName("Reference Date").HasColumnType("datetime2").IsRequired(); });
 
         builder.OwnsOne(_ => _.PaymentDate, paymentDate =>
-        { paymentDate.Property(_ => _.Date).HasColumnName("Payment Date").HasColumnType("datetime2").IsRequired(); });
+        { paymentDate.Property(_ => _.Date).HasColumnName("Payment Date").HasColumnType("datetime2").IsRequired(false); });
 
         builder.OwnsOne(_ => _.CreatedAt, createdAt =>
         { createdAt.Property(_ => _.Date).HasColumnName("CreatedAt").HasColumnType("datetime2").IsRequired(); });

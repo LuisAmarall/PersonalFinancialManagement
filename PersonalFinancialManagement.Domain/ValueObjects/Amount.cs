@@ -12,7 +12,7 @@ public sealed class Amount : ValueObject<Amount>
 
     public Amount(decimal value)
     {
-        if (value <= 0)
+        if (value < 0)
             throw new InvalidValueObjectException($"Amount must be zero or greater. Invalid value: {value}.");
 
         if (value > MaxValue)

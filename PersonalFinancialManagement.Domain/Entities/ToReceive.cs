@@ -24,7 +24,7 @@ public class ToReceive
 
     public TransactionDate DueDate { get; private set; }
     public TransactionDate ReferenceDate { get; private set; }
-    public TransactionDate DateReceipt { get; private set; }
+    public TransactionDate? DateReceipt { get; private set; }
     public TransactionDate CreatedAt { get; private set; }
 
     public ToReceiveStatus Status { get; private set; }
@@ -32,11 +32,11 @@ public class ToReceive
     private ToReceive() { }
 
     public static ToReceive Create(Guid userId, Guid categoryId, AdditionalInformation description,
-        AdditionalInformation observation, Amount originalValue, Amount amountReceived, TransactionDate dueDate,
-        TransactionDate referenceDate, TransactionDate dateReceipt, TransactionDate createdAt)
+        AdditionalInformation observation, Amount originalValue, TransactionDate dueDate,
+        TransactionDate referenceDate, TransactionDate createdAt)
     {
         AttributeValidation(userId, categoryId, description, observation, originalValue,
-            amountReceived, dueDate, referenceDate, dateReceipt, createdAt);
+            dueDate, referenceDate, createdAt);
         return new ToReceive
         {
             Id = Guid.NewGuid(),
@@ -45,17 +45,18 @@ public class ToReceive
             Description = description,
             Observation = observation,
             OriginalValue = originalValue,
-            AmountReceived = amountReceived,
+            AmountReceived = Amount.Zero,
             DueDate = dueDate,
             ReferenceDate = referenceDate,
-            DateReceipt = dateReceipt,
-            CreatedAt = createdAt
+            DateReceipt = null,
+            CreatedAt = createdAt,
+            Status = ToReceiveStatus.Pending
         };
     }
 
     private static void AttributeValidation(Guid userId, Guid categoryId,
-        AdditionalInformation description, AdditionalInformation observation, Amount originalValue, Amount amountReceived,
-        TransactionDate dueDate, TransactionDate referenceDate, TransactionDate dateReceipt, TransactionDate createdAt)
+        AdditionalInformation description, AdditionalInformation observation, Amount originalValue,
+        TransactionDate dueDate, TransactionDate referenceDate, TransactionDate createdAt)
     {
         if (userId == Guid.Empty)
             throw new InvalidValueObjectException($"A valid user is required for the ToReceive. Please check the field {nameof(userId)}.");
@@ -66,10 +67,8 @@ public class ToReceive
         ArgumentNullException.ThrowIfNull(description, nameof(description));
         ArgumentNullException.ThrowIfNull(observation, nameof(observation));
         ArgumentNullException.ThrowIfNull(originalValue, nameof(originalValue));
-        ArgumentNullException.ThrowIfNull(amountReceived, nameof(amountReceived));
         ArgumentNullException.ThrowIfNull(dueDate, nameof(dueDate));
         ArgumentNullException.ThrowIfNull(referenceDate, nameof(referenceDate));
-        ArgumentNullException.ThrowIfNull(dateReceipt, nameof(dateReceipt));
         ArgumentNullException.ThrowIfNull(createdAt, nameof(createdAt));
     }
 
