@@ -57,7 +57,7 @@ public class User
     public void Delete()
     {
         if (DeletedAt.HasValue)
-            throw new InvalidOperationException("Transaction is already deleted!");
+            throw new InvalidOperationException("User is already deleted!");
 
         DeletedAt = DateTime.UtcNow;
     }
@@ -65,7 +65,7 @@ public class User
     public void Restore()
     {
         if (!DeletedAt.HasValue)
-            throw new InvalidOperationException("Transaction is not deleted!");
+            throw new InvalidOperationException("User is not deleted!");
 
         DeletedAt = null;
     }

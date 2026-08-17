@@ -56,7 +56,7 @@ public class Category
     public void Delete()
     {
         if (DeletedAt.HasValue)
-            throw new InvalidOperationException("User is already deleted!");
+            throw new InvalidOperationException("Category is already deleted!");
 
         DeletedAt = DateTime.UtcNow;
     }
@@ -64,7 +64,7 @@ public class Category
     public void Restore()
     {
         if (!DeletedAt.HasValue)
-            throw new InvalidOperationException("User is not deleted!");
+            throw new InvalidOperationException("Category is not deleted!");
 
         DeletedAt = null;
     }
