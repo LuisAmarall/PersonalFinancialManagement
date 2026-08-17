@@ -28,7 +28,8 @@ public class Category
             Id = Guid.NewGuid(),
             UserId = userId,
             Description = description,
-            Observation = observation
+            Observation = observation,
+            CreatedAt = DateTime.UtcNow
         };
     }
 
