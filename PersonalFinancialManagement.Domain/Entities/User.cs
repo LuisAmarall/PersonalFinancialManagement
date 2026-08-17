@@ -10,7 +10,7 @@ public class User : SoftDeletableEntity
     public Email EmailAddress { get; private set; }
     public Password Password { get; private set; }
 
-    public DateTime CreatedAt { get; private set; } = DateTime.Now;
+    public DateTime CreatedAt { get; private set; }
 
     private User() { }
 
