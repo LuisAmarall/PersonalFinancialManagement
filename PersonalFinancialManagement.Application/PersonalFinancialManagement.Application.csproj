@@ -20,4 +20,44 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Abstractions\" />
+    <Folder Include="Behaviors\" />
+    <Folder Include="Contracts\Requests\Categories\" />
+    <Folder Include="Contracts\Requests\ToPay\" />
+    <Folder Include="Contracts\Requests\ToReceive\" />
+    <Folder Include="Contracts\Requests\User\" />
+    <Folder Include="Contracts\Responses\ToPay\" />
+    <Folder Include="Contracts\Responses\ToReceive\" />
+    <Folder Include="Contracts\Responses\User\" />
+    <Folder Include="Features\Categories\Create\" />
+    <Folder Include="Features\Categories\Delete\" />
+    <Folder Include="Features\Categories\GetById\" />
+    <Folder Include="Features\Categories\List\" />
+    <Folder Include="Features\Categories\Restore\" />
+    <Folder Include="Features\Categories\Update\" />
+    <Folder Include="Contracts\Responses\Categories\" />
+    <Folder Include="Features\ToPay\Create\" />
+    <Folder Include="Features\ToPay\GetById\" />
+    <Folder Include="Features\ToPay\List\" />
+    <Folder Include="Features\ToPay\RescheduleDueDate\" />
+    <Folder Include="Features\ToPay\RegisterPayment\" />
+    <Folder Include="Features\ToPay\ChangeOriginalValue\" />
+    <Folder Include="Features\ToPay\UpdateDetails\" />
+    <Folder Include="Features\ToReceive\ChangeOriginalValue\" />
+    <Folder Include="Features\ToReceive\Create\" />
+    <Folder Include="Features\ToReceive\GetById\" />
+    <Folder Include="Features\ToReceive\List\" />
+    <Folder Include="Features\ToReceive\RegisterReceipt\" />
+    <Folder Include="Features\ToReceive\RescheduleDueDate\" />
+    <Folder Include="Features\ToReceive\UpdateDetails\" />
+    <Folder Include="Features\Users\Login\" />
+    <Folder Include="Features\Users\Register\" />
+    <Folder Include="Features\Users\GetById\" />
+    <Folder Include="Features\Users\Restore\" />
+    <Folder Include="Features\Users\Delete\" />
+    <Folder Include="Features\Users\ChangePassword\" />
+    <Folder Include="Features\Users\UpdateProfile\" />
+  </ItemGroup>
+
 </Project>
