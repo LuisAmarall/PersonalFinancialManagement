@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abstractions\" />
     <Folder Include="Behaviors\" />
     <Folder Include="Contracts\Requests\Categories\" />
     <Folder Include="Contracts\Requests\ToPay\" />
