@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PersonalFinancialManagement.Application.Interfaces.Repositories;
-using PersonalFinancialManagement.Infrastructure.Persistence.Context;
+using PersonalFinancialManagement.Infrastructure.Security;
 using PersonalFinancialManagement.Infrastructure.Repositories;
+using PersonalFinancialManagement.Application.Interfaces.Security;
+using PersonalFinancialManagement.Infrastructure.Persistence.Context;
+using PersonalFinancialManagement.Application.Interfaces.Repositories;
 
 namespace PersonalFinancialManagement.Infrastructure.DependencyInjaction;
 
@@ -28,6 +30,9 @@ public static class InfrastructureServiceCollection
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IToPayRepository, ToPayRepository>();
         services.AddScoped<IToReceiveRepository, ToReceiveRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IAccessTokenGenerator, AccessTokenGenerator>();
+        services.AddScoped<IPasswordHasher, PasswordHasher>();
     }
 }
